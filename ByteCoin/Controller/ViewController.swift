@@ -7,12 +7,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ByteCoinViewController: UIViewController {
+    
+    //MARK: - Properties
+    
+    let byteCoinView = ByteCoinView()
+    
+    override func loadView() {
+        view = byteCoinView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .brown
     }
 
 
