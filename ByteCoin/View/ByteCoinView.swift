@@ -143,4 +143,17 @@ class ByteCoinView: UIView {
     func setPickerViewDataSource(_ dataSouce: UIPickerViewDataSource) {
         pickerView.dataSource = dataSouce
     }
+    
+    func updateUI(with coin: CoinModel) {
+        DispatchQueue.main.async {
+            self.bitcoinPriceLabel.text = coin.rateString
+            self.currencySymbolLabel.text = coin.fiatCurrency
+        }
+    }
+    
+    func setDefaultPickerSelection(coinsArray: [String], currency: String) {
+        if let index = coinsArray.firstIndex(of: currency) {
+            pickerView.selectRow(index, inComponent: 0, animated: false)
+        }
+    }
 }

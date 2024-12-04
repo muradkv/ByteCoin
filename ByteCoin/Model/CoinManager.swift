@@ -59,14 +59,15 @@ struct CoinManager {
         do {
             let decodedData = try decoder.decode(CoinModel.self, from: coinData)
             let cryptoCurrency = decodedData.cryptoCurrency
-            let fiatCurrency = decodedData.cryptoCurrency
+            let fiatCurrency = decodedData.fiatCurrency
             let rate = decodedData.rate
             
             let coin = CoinModel(cryptoCurrency: cryptoCurrency, fiatCurrency: fiatCurrency, rate: rate)
             return coin
         } catch {
             self.delegate?.didFailWithError(error: error)
-            return nil
+            let coin = CoinModel(cryptoCurrency: "BTC", fiatCurrency: "Unknown", rate: 0)
+            return coin
         }
     }
 }
